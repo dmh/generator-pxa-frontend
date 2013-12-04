@@ -1,4 +1,4 @@
-# generator-pxa-frontend [![Build Status](https://secure.travis-ci.org/someuser/generator-pxa-frontend.png?branch=master)](https://travis-ci.org/someuser/generator-pxa-frontend)
+# generator-pxa-frontend [![Build Status](https://secure.travis-ci.org/dmh/generator-pxa-frontend.png?branch=master)](https://travis-ci.org/dmh/generator-pxa-frontend)
 
 
 ## License
