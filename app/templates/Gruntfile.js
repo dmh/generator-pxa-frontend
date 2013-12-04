@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             //     tasks: ['assemble']
             // },
             less: {
-                files: '<%%= main.dist %>',
+                files: '<%%= main.repo %>/fileadmin/Pixelant/css/*.less',
                 tasks: ['less']
             },
             // gruntfile: {
