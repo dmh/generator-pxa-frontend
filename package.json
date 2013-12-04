@@ -3,35 +3,27 @@
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
-    "yeoman-generator"
+    "pxa-frontend",
+    "pxa"
   ],
-  "homepage": "https://github.com/someuser/generator-pxa-frontend",
-  "bugs": "https://github.com/someuser/generator-pxa-frontend/issues",
+  "homepage": "https://github.com/dmh/generator-pxa-frontend",
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/someuser"
+    "name": "Dmytro",
+    "url": "https://github.com/dmh"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/someuser/generator-pxa-frontend.git"
-  },
-  "scripts": {
-    "test": "mocha"
+    "url": "git://github.com/dmh/generator-pxa-frontend.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.0"
-  },
-  "devDependencies": {
-    "mocha": "~1.12.0"
+    "yeoman-generator": "~0.14.0"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=1.0.5"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=0.10",
   },
   "licenses": [
     {
