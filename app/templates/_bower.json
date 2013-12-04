@@ -1,0 +1,24 @@
+{
+  "name": "pxa_frontend",
+  "version": "1.0.0",
+  "authors": [
+    "pxa"
+  ],
+  "keywords": [
+    "pxa"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pxa_bootstrap": "git@bitbucket.org:pixelant/pxa_bootstrap.git",
+    "pxa_fluidcontent": "git@bitbucket.org:pixelant/pxa_fluidcontent.git",
+    "pxa_foundation_layout": "git@bitbucket.org:pixelant/pxa_foundation_layout.git",
+    "pxa_foundation": "git@bitbucket.org:pixelant/pxa_foundation.git",
+    "bootstrap": "bootstrap#v2.3.2"
+  }
+}

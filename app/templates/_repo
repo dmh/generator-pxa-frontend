@@ -1,0 +1,7 @@
+#!/bin/bash
+DIRECTORY="<%= (dirr) %>"
+GIT="<%= (gitt) %>"
+
+if [ ! -d "$DIRECTORY" ]; then
+  git clone $GIT
+fi
