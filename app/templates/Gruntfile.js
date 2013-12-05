@@ -13,10 +13,10 @@ module.exports = function(grunt) {
     grunt.initConfig({
         main: mainn,
         watch: {
-            // html: {
-            //     files: ['src/**/*.hbs'],
-            //     tasks: ['assemble']
-            // },
+            html: {
+                files: ['src/**/*.hbs'],
+                tasks: ['assemble']
+            },
             less: {
                 files: '<%%= main.repo %>/fileadmin/Pixelant/css/*.less',
                 tasks: ['less']
@@ -125,23 +125,23 @@ module.exports = function(grunt) {
 
 
 
-        // assemble: {
-        //     options: {
-        //         flatten: true,
-        //         layout: 'layout.hbs',
-        //         layoutdir: 'src/templates/layouts',
-        //         assets: 'foundation_static_site/assets',
-        //         partials: ['src/templates/pages/*.hbs', 'src/templates/parts/*.hbs']
-        //     },
-        //     demo: {
-        //         options: {
-        //             data: ['src/data/*.{json,yml}']
-        //         },
-        //         files: {
-        //             'foundation_static_site/': ['src/templates/pages/*.hbs']
-        //         },
-        //     },
-        // },
+        assemble: {
+            options: {
+                flatten: true,
+                layout: 'layout.hbs',
+                layoutdir: 'src/templates/layouts',
+                assets: '<%%= main.dist %>/assets',
+                partials: ['src/templates/pages/*.hbs', 'src/templates/parts/*.hbs']
+            },
+            demo: {
+                options: {
+                    data: ['src/data/*.{json,yml}']
+                },
+                files: {
+                    '<%%= main.dist %>/': ['src/templates/pages/*.hbs']
+                },
+            },
+        },
 
         clean: {
             static_site: ["<%%= main.dist %>/*"],
@@ -150,13 +150,13 @@ module.exports = function(grunt) {
             // pxa_ext: ["ems-ekonomi/typo3conf/pxa_bootstrap", "ems-ekonomi/typo3conf/pxa_fluidcontent", "ems-ekonomi/typo3conf/foundation_layout"]
         },
 
-        // mkdir: {
-        //     all: {
-        //         options: {
-        //           create: ['<%%= pkg.repo %>']
-        //         },
-        //     },
-        // },
+        mkdir: {
+            all: {
+                options: {
+                  create: ['<%%= main.dist %>/assets']
+                },
+            },
+        },
 
 
         copy: {
@@ -180,6 +180,11 @@ module.exports = function(grunt) {
               {expand: true, cwd: 'temp/pxa_ext/', src: ['ext'], dest: '<%%= main.repo %>/typo3conf/'}
               ]
             },
+            styles: {
+              files: [
+              {expand: true, src: ['styles.css'], dest: '<%%= main.dist %>/assets'}
+              ]
+            },
 
 
         }
@@ -187,13 +192,15 @@ module.exports = function(grunt) {
     });
 grunt.loadNpmTasks('assemble');
     grunt.registerTask('start', [
+        'clean:static_site',
+        'mkdir',
+        'copy:styles',
         'copy:ext',
         'clean:pxa_ext_delete',
         'copy:bower',
         'copy:boot',
-        // 'clean:static_site',
         'less',
-        // 'assemble',
+        'assemble',
         'connect:livereload',
         'watch',
         'watch'
@@ -202,13 +209,6 @@ grunt.loadNpmTasks('assemble');
         'clean:pxa_ext_delete',
         'copy:ext_return',
         'clean:delete_ext_temp'
-    ]);
-    grunt.registerTask('test', [
-      'copy:ext',
-      'clean:pxa_ext_delete',
-      'copy:bower',
-      'copy:boot'
-        // 'less',
     ]);
 
 };

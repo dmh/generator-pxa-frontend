@@ -54,15 +54,20 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.mkdir('temp');
         this.mkdir('temp/pxa_ext');
         this.mkdir('foundation_static_site');
-        this.mkdir('foundation_static_site/assets');
-
+        this.mkdir('src');
+        this.mkdir('src/templates');
+        this.mkdir('src/templates/layouts');
+        this.mkdir('src/templates/pages');
+        this.mkdir('src/templates/parts');
         this.copy('_package.json', 'package.json');
         this.copy('_repo', 'repo');
         this.copy('_bower.json', 'bower.json');
         this.copy('gitignore', '.gitignore');
         this.copy('jshintrc', '.jshintrc');
         this.copy('start', 'start');
-        this.copy('index.html', 'foundation_static_site/index.html');
+        this.copy('styles.css', 'styles.css');
         this.template('Gruntfile.js');
+        this.copy('src/templates/layouts/layout.hbs', 'src/templates/layouts/layout.hbs');
+        this.copy('src/templates/pages/index.hbs', 'src/templates/pages/index.hbs');
     };
 };
