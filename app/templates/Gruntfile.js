@@ -18,8 +18,8 @@ module.exports = function(grunt) {
                 tasks: ['assemble']
             },
             less: {
-                files: '<%%= main.repo %>/fileadmin/Pixelant/css/*.less',
-                tasks: ['less']
+                files: '<%%= main.repo %>/fileadmin/Pixelant/css/{,*/}*.less',
+                tasks: ['less:dev']
             },
             // gruntfile: {
             //     files: ['Gruntfile.js'],
@@ -35,24 +35,6 @@ module.exports = function(grunt) {
                 ]
             }
         },
-
-// connect: {
-//             options: {
-//                 port: 9000,
-//                 // change this to '0.0.0.0' to access the server from outside
-//                 hostname: '0.0.0.0'
-//             },
-//             livereload: {
-//                 options: {
-//                     middleware: function (connect) {
-//                         return [
-//                             lrSnippet,
-//                             mountFolder(connect, 'foundation_static_site')
-//                         ];
-//                     }
-//                 }
-//             },
-//         },
 
         connect: {
             options: {
@@ -84,45 +66,12 @@ module.exports = function(grunt) {
         },
 
         less: {
-          development: {
+          dev: {
             files: {
-              "<%%= main.dist %>/assets/styles.css": "<%%= main.repo %>/fileadmin/Pixelant/css/root.less"
+              "<%%= main.dist %>/assets/styles.css": ["<%%= main.repo %>/fileadmin/Pixelant/css/root.less"]
             }
           },
         },
-
-
-        // assemble: {
-        //   options: {
-        //     assets: 'assets',
-        //     partials: ['includes/**/*.hbs'],
-        //     layout: ['layouts/default.hbs'],
-        //     data: ['data/*.{json,yml}']
-        //   },
-        //   pages: {
-        //     src: ['docs/*.hbs'],
-        //     dest: './'
-        //   }
-        // },
-
-        // assemble: {
-        //       options: {
-        //         flatten: true,
-        //         layout: 'layout.hbs',
-        //         layoutdir: 'src/templates/layouts',
-        //         assets: 'foundation_static_site/assets',
-        //         partials: ['src/templates/pages/*.hbs', 'src/templates/parts/*.hbs']
-        //       },
-        //       demo: {
-        //         options: {
-        //           data: ['src/data/*.{json,yml}']
-        //         },
-        //         files: {
-        //           'foundation_static_site/': ['src/templates/pages/*.hbs']
-        //         }
-        //       }
-        //     },
-
 
 
         assemble: {
@@ -146,8 +95,10 @@ module.exports = function(grunt) {
         clean: {
             static_site: ["<%%= main.dist %>/*"],
             pxa_ext_delete: ["<%%= main.repo %>/typo3conf/ext"],
-            delete_ext_temp: ["temp/pxa_ext/*"]
-            // pxa_ext: ["ems-ekonomi/typo3conf/pxa_bootstrap", "ems-ekonomi/typo3conf/pxa_fluidcontent", "ems-ekonomi/typo3conf/foundation_layout"]
+            f_pxa_ext_delete: ['<%%= main.repo %>/typo3conf/ext/pxa_bootstrap','<%%= main.repo %>/typo3conf/ext/pxa_fluidcontent','<%%= main.repo %>/typo3conf/ext/pxa_foundation','<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout'],
+            delete_ext_temp: ["temp/pxa_ext/*"],
+            delete_boot: ["<%%= main.repo %>/typo3conf/ext/bootstrap", "<%%= main.repo %>/typo3conf/ext/jquery"]
+
         },
 
         mkdir: {
@@ -170,6 +121,16 @@ module.exports = function(grunt) {
               {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
               ]
             },
+            font: {
+              files: [
+              {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/', src: ['font/**'], dest: '<%%= main.dist %>'}
+              ]
+            },
+            img: {
+              files: [
+              {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout/Resources/Public/', src: ['img/**'], dest: '<%%= main.dist %>'}
+              ]
+            },
             ext: {
               files: [
               {expand: true, cwd: '<%%= main.repo %>/typo3conf/', src: ['ext'], dest: 'temp/pxa_ext/'}
@@ -185,9 +146,25 @@ module.exports = function(grunt) {
               {expand: true, src: ['styles.css'], dest: '<%%= main.dist %>/assets'}
               ]
             },
+            styles_fix: {
+              files: [
+              {expand: true, src: ['fix.css'], dest: '<%%= main.dist %>/assets'}
+              ]
+            },
+            ext_folder_copy: {
+              files: [
+              {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/', src: ['pxa_bootstrap/**', 'pxa_fluidcontent/**', 'pxa_foundation/**', 'pxa_foundation_layout/**'], dest: 'temp/pxa_ext/'}
+              ]
+            },
+            ext_folder_return: {
+              files: [
+              {expand: true, cwd: 'temp/pxa_ext/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/'}
+              ]
+            }
 
 
-        }
+
+        },
 
     });
 grunt.loadNpmTasks('assemble');
@@ -195,20 +172,44 @@ grunt.loadNpmTasks('assemble');
         'clean:static_site',
         'mkdir',
         'copy:styles',
+        'copy:styles_fix',
         'copy:ext',
         'clean:pxa_ext_delete',
         'copy:bower',
         'copy:boot',
-        'less',
+        'copy:font',
+        'copy:img',
+        'less:dev',
         'assemble',
         'connect:livereload',
-        'watch',
         'watch'
     ]);
     grunt.registerTask('end', [
         'clean:pxa_ext_delete',
         'copy:ext_return',
         'clean:delete_ext_temp'
+    ]);
+    grunt.registerTask('f_start', [
+        'clean:static_site',
+        'mkdir',
+        'copy:styles',
+        'copy:styles_fix',
+        'copy:ext_folder_copy',
+        'clean:f_pxa_ext_delete',
+        'copy:bower',
+        'copy:boot',
+        'copy:font',
+        'copy:img',
+        'less:dev',
+        'assemble',
+        'connect:livereload',
+        'watch'
+    ]);
+    grunt.registerTask('f_end', [
+        'clean:f_pxa_ext_delete',
+        'copy:ext_folder_return',
+        'clean:delete_ext_temp',
+        'clean:delete_boot'
     ]);
 
 };
