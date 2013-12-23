@@ -1,7 +1,7 @@
 {
   "name": "generator-pxa-frontend",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.0.5",
+  "description": "Frontend generator for Foundation2013",
   "keywords": [
     "pxa-frontend",
     "pxa"
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/dmh/generator-pxa-frontend",
   "author": {
     "name": "Dmytro",
-    "url": "https://github.com/dmh"
+    "url": "http://github.com/dmh"
   },
   "main": "app/index.js",
   "repository": {
@@ -21,10 +21,11 @@
     "color-log": "~0.0.2"
   },
   "peerDependencies": {
-    "yo": ">=1.0.5"
+    "yo": ">=1.0.6"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
   },
   "licenses": [
     {

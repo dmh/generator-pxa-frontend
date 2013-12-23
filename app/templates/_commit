@@ -1,0 +1,34 @@
+#!/bin/bash
+
+SETCOLOR_GREEN="echo -en \\033[1;32m"
+SETCOLOR_RED="echo -en \\033[1;31m"
+SETCOLOR_CYAN="echo -en \\033[1;36m"
+SETCOLOR_BLUE="echo -en \\033[1;34m"
+COLOR_RESET="echo -en \\033[0m"
+
+DIRECTORY="<%= (dirr) %>"
+
+cd $DIRECTORY
+git status
+
+$SETCOLOR_GREEN
+echo 'Do you whant commit'
+$COLOR_RESET
+read -p "(y/n)?" CONT
+if [ "$CONT" == "y" ]; then
+    $SETCOLOR_GREEN
+    echo 'Commit massage? (without brackets ' ')'
+    $COLOR_RESET
+    read STR
+    git commit -a -m "$STR"
+fi
+
+$SETCOLOR_GREEN
+echo 'Do you whant push to server'
+$COLOR_RESET
+read -p "(y/n)?" COONT
+if [ "$COONT" == "y" ]; then
+git push origin master
+fi
+
+cd -

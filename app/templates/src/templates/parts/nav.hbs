@@ -1,0 +1,78 @@
+<div class="container head-bottom">
+    <nav role="navigation">
+        <nav role="navigation">
+            <ul class="main-menu nav-menu sf-menu">
+                        <li{{#is basename 'index'}} class="active"{{/is}}>
+                            <a href="http://localhost:9004/index.html">Hem</a>
+                        </li>
+                        <li{{#is basename 'om-foretaget'}} class="active"{{/is}}>
+                            <a href="http://localhost:9004/om-foretaget.html">Om företaget</a>
+                            <ul class="dropdown level-01" style="display: none;">
+                                <li>
+                                    <a href="http://localhost:9004/undersida-niva-2.html">Undersida nivå 2</a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:9004/undersida-2-niva-2.html">Undersida 2 nivå 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li{{#is basename 'funktioner'}} class="active"{{/is}}>
+                            <a href="http://localhost:9004/funktioner.html">Funktioner</a>
+                            <ul class="dropdown level-01" style="display: none;">
+                                <li>
+                                    <a href="funktioner/typiskt-sidinnehall/"  >Typiskt sidinnehåll</a>
+                                </li>
+                                <li>
+                                    <a href="/funktioner/speciella-element/"  >Speciella element</a>
+                                </li>
+                                <li>
+                                    <a href="/funktioner/anpassat-innehall/"  >Anpassat innehåll</a>
+                                </li>
+                                <li>
+                                    <a href="/funktioner/plugin-form/"  >Plugin &amp; Form</a>
+                                </li>
+                                <li>
+                                    <a href="/funktioner/sidlayout/"  >Sidlayout</a>
+                                </li>
+                                <li>
+                                    <a href="/funktioner/multimedia/"  >Multimedia</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li{{#is basename 'nyheter'}} class="active"{{/is}}>
+                            <a href="http://localhost:9004/nyheter.html">Nyheter</a>
+                        </li>
+                        <li{{#is basename 'kontakt'}} class="active"{{/is}}>
+                            <a href="http://localhost:9004/kontakt.html">Kontakt</a>
+                        </li>
+                {{#each pages}}
+                {{#is data.section  "one" }}
+
+                        {{else}}
+                        <li{{#is ../../page.dest this.dest}} class="active"{{/is}}><a href="http://localhost:9004/{{filename}}">{{basename}}</a></li>
+                  {{/is }}
+
+
+                {{/each}}
+
+
+
+
+            </ul>
+        </nav>
+    </nav>
+
+
+
+<!-- mobile nav ends -->
+
+<!-- searching starts -->
+<form class="searching" action="/sok/"><fieldset><input class="quicksearch" type="text" value="" autocomplete="off" /></fieldset></form>
+<script type="text/javascript">
+    var suggest_url = '/index.php?eID=tx_solr_suggest&id=57&L=0';
+    var remember_history = '1';
+    var postsearch_value = '';
+</script>
+            <!-- searching ends -->
+
+</div>
