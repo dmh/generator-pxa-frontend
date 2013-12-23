@@ -27,6 +27,7 @@ PxaFrontendGenerator.prototype.askFor = function askFor() {
 
   console.log('');
   log.mark('Project repository in bitbucket:');
+  console.log('Example: git@bitbucket.org:pixelant/xxx.git');
   console.log('--------------------------------');
   var prompts = [{
     name: 'gitt',
@@ -59,6 +60,9 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.mkdir('src/templates/layouts');
         this.mkdir('src/templates/pages');
         this.mkdir('src/templates/parts');
+        this.mkdir('foundation');
+        this.mkdir('foundation/typo3conf');
+        this.mkdir('foundation/typo3conf/ext');
         this.copy('_package.json', 'package.json');
         this.copy('_bower.json', 'bower.json');
         this.copy('_commit', 'commit');

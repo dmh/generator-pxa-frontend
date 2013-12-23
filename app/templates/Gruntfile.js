@@ -4,7 +4,7 @@ var PORT = 9004;
 module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
-    require('time-grunt')(grunt);
+    // require('time-grunt')(grunt);
     var mainn = {
         dist: 'foundation_static_site',
         repo: '<%= (dirr) %>'
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
                 assets: '<%%= main.dist %>/assets',
                 partials: ['src/templates/pages/*.hbs', 'src/templates/parts/*.hbs']
             },
-            demo: {
+            all: {
                 options: {
                     data: ['src/data/*.{json,yml}']
                 },
@@ -93,11 +93,12 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            static_site: ["<%%= main.dist %>/*"],
-            pxa_ext_delete: ["<%%= main.repo %>/typo3conf/ext"],
-            f_pxa_ext_delete: ['<%%= main.repo %>/typo3conf/ext/pxa_bootstrap','<%%= main.repo %>/typo3conf/ext/pxa_fluidcontent','<%%= main.repo %>/typo3conf/ext/pxa_foundation','<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout'],
-            delete_ext_temp: ["temp/pxa_ext/*"],
-            delete_boot: ["<%%= main.repo %>/typo3conf/ext/bootstrap", "<%%= main.repo %>/typo3conf/ext/jquery"]
+            f_static_site: ["<%%= main.dist %>/*"],
+            typo3_ext: ["<%%= main.repo %>/typo3conf/ext"],
+            foundation: ["foundation/typo3conf/ext/**/*"],
+            bower_pack_from_typo3_ext: ['<%%= main.repo %>/typo3conf/ext/pxa_bootstrap','<%%= main.repo %>/typo3conf/ext/pxa_fluidcontent','<%%= main.repo %>/typo3conf/ext/pxa_foundation','<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout'],
+            temp_ext: ["temp/pxa_ext/*"],
+            typo3_bootstrap: ["<%%= main.repo %>/typo3conf/ext/bootstrap", "<%%= main.repo %>/typo3conf/ext/jquery"]
 
         },
 
@@ -111,14 +112,24 @@ module.exports = function(grunt) {
 
 
         copy: {
-            bower: {
+            bower_to_ext: {
               files: [
               {expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext'}
               ]
             },
-            boot: {
+            bootstrap_to_ext: {
               files: [
               {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
+              ]
+            },
+            bower_to_foundation: {
+              files: [
+              {expand: true, cwd: 'bower_components/', src: ['**'], dest: 'foundation/typo3conf/ext'}
+              ]
+            },
+            bootstrap_to_foundation: {
+              files: [
+              {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: 'foundation/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
               ]
             },
             font: {
@@ -131,12 +142,12 @@ module.exports = function(grunt) {
               {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout/Resources/Public/', src: ['img/**'], dest: '<%%= main.dist %>'}
               ]
             },
-            ext: {
+            ext_file_to_temp: {
               files: [
               {expand: true, cwd: '<%%= main.repo %>/typo3conf/', src: ['ext'], dest: 'temp/pxa_ext/'}
               ]
             },
-            ext_return: {
+            ext_file_from_temp: {
               files: [
               {expand: true, cwd: 'temp/pxa_ext/', src: ['ext'], dest: '<%%= main.repo %>/typo3conf/'}
               ]
@@ -151,12 +162,12 @@ module.exports = function(grunt) {
               {expand: true, src: ['fix.css'], dest: '<%%= main.dist %>/assets'}
               ]
             },
-            ext_folder_copy: {
+            ext_folder_to_temp: {
               files: [
               {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/', src: ['pxa_bootstrap/**', 'pxa_fluidcontent/**', 'pxa_foundation/**', 'pxa_foundation_layout/**'], dest: 'temp/pxa_ext/'}
               ]
             },
-            ext_folder_return: {
+            ext_folder_from_temp: {
               files: [
               {expand: true, cwd: 'temp/pxa_ext/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/'}
               ]
@@ -167,49 +178,88 @@ module.exports = function(grunt) {
         },
 
     });
-grunt.loadNpmTasks('assemble');
-    grunt.registerTask('start', [
-        'clean:static_site',
+
+        grunt.loadNpmTasks('assemble');
+
+        grunt.registerTask('start_part-one', [
+        'clean:f_static_site',
         'mkdir',
         'copy:styles',
         'copy:styles_fix',
-        'copy:ext',
-        'clean:pxa_ext_delete',
-        'copy:bower',
-        'copy:boot',
+        'copy:bower_to_foundation',
+        'copy:bootstrap_to_foundation',
+        'copy:ext_folder_to_temp',
+        'clean:bower_pack_from_typo3_ext',
+        'copy:bower_to_ext',
+        'copy:bootstrap_to_ext',
         'copy:font',
         'copy:img',
         'less:dev',
         'assemble',
-        'connect:livereload',
-        'watch'
-    ]);
-    grunt.registerTask('end', [
-        'clean:pxa_ext_delete',
-        'copy:ext_return',
-        'clean:delete_ext_temp'
-    ]);
-    grunt.registerTask('f_start', [
-        'clean:static_site',
+        'connect:livereload'
+        ]);
+        grunt.registerTask('start_part-two', function(){
+            grunt.log.writeln('').writeln('Press  ( CTRL + C ) to stop watch process'['magenta']);
+            grunt.task.run(["watch"]);
+        });
+        grunt.registerTask('end', [
+        'clean:bower_pack_from_typo3_ext',
+        'clean:typo3_bootstrap',
+        'copy:ext_folder_from_temp',
+        'clean:temp_ext',
+        'clean:foundation'
+        ]);
+        grunt.registerTask('commit', function(){
+        grunt.log.writeln('').writeln('Now you can commit your changes, write (.\/commit) in Terminal(MAC), or (commit) in Terminal(Windows) ' ['magenta']);
+        });
+
+
+grunt.registerTask("start",function(){
+      grunt.task.run(['start_part-one']);
+      grunt.task.run(['start_part-two']);
+      process.on("SIGINT",function(){
+        grunt.task.run(['end']);
+        grunt.task.run(['commit']);
+        grunt.task.current.async()();
+    });
+});
+
+    grunt.registerTask('shared_start_part-one', [
+        'clean:f_static_site',
         'mkdir',
         'copy:styles',
         'copy:styles_fix',
-        'copy:ext_folder_copy',
-        'clean:f_pxa_ext_delete',
-        'copy:bower',
-        'copy:boot',
+        'copy:ext_file_to_temp',
+        'clean:typo3_ext',
+        'copy:bower_to_ext',
+        'copy:bootstrap_to_ext',
         'copy:font',
         'copy:img',
         'less:dev',
         'assemble',
-        'connect:livereload',
-        'watch'
+        'connect:livereload'
     ]);
-    grunt.registerTask('f_end', [
-        'clean:f_pxa_ext_delete',
-        'copy:ext_folder_return',
-        'clean:delete_ext_temp',
-        'clean:delete_boot'
+    grunt.registerTask('shared_start_part-two', function(){
+        grunt.log.writeln('').writeln('Press ( CTRL + C ) to stop watch process'['magenta']);
+        grunt.task.run(["watch"]);
+    });
+    grunt.registerTask('shared_end', [
+        'clean:typo3_ext',
+        'copy:ext_file_from_temp',
+        'clean:temp_ext'
     ]);
+    grunt.registerTask('commit', function(){
+        grunt.log.writeln('').writeln('Now you can commit your changes, write (.\/commit) in Terminal(MAC), or (commit) in Terminal(Windows) ' ['magenta']);
+    });
+
+grunt.registerTask("shared_start",function(){
+      grunt.task.run(['shared_start_part-one']);
+      grunt.task.run(['shared_start_part-two']);
+      process.on("SIGINT",function(){
+        grunt.task.run(['shared_end']);
+        grunt.task.run(['commit']);
+        grunt.task.current.async()();
+    });
+});
 
 };

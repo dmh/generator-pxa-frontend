@@ -1,34 +1,15 @@
 #!/bin/bash
-SETCOLOR_GREEN="echo -en \\033[1;32m"
-SETCOLOR_RED="echo -en \\033[1;31m"
-SETCOLOR_CYAN="echo -en \\033[1;36m"
-SETCOLOR_BLUE="echo -en \\033[1;34m"
-COLOR_RESET="echo -en \\033[0m"
-
 
 DIRECTORY="<%= (dirr) %>"
 FDIRECTORY="<%= (dirr) %>/typo3conf/ext"
 GIT="<%= (gitt) %>"
-
-$SETCOLOR_CYAN
-echo "PRESS Ctrl+C TO STOP THIS TASK"
-trap "echo ." SIGINT SIGTERM
-$COLOR_RESET
 
 if [ ! -d "$DIRECTORY" ]; then
   git clone $GIT
 fi
 
 if [ ! -d "$FDIRECTORY" ]; then
-    grunt start
-    grunt end
+    grunt shared_start
 else
-    grunt f_start
-    grunt f_end
+    grunt start
 fi
-
-
-$SETCOLOR_GREEN
-echo
-echo "Now you can commit your changes, write 'commit' in your CLI"
-$COLOR_RESET
