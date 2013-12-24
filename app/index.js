@@ -5,49 +5,42 @@ var path = require('path');
 var log = require('color-log');
 var yeoman = require('yeoman-generator');
 
-
-var PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
-        this.on('end', function () {
-          if (this.go === 1) {
-          this.installDependencies({ skipInstall: options['skip-install'] });
-          };
+var PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options) {
+    yeoman.generators.Base.apply(this, arguments);
+    this.on('end', function () {
+            if (this.go === 1) {
+                this.installDependencies({ skipInstall: options['skip-install'] });
+            }
         });
-
-
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
 util.inherits(PxaFrontendGenerator, yeoman.generators.Base);
 
 PxaFrontendGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    var cb = this.async();
+    console.log('');
+    log.mark('Project repository in bitbucket:');
+    console.log('Example: git@bitbucket.org:pixelant/xxx.git');
+    console.log('--------------------------------');
+    var prompts = [{
+        name: 'gitt',
+        message: 'SSH link'
+    }];
 
-  // have Yeoman greet the user.
-
-  console.log('');
-  log.mark('Project repository in bitbucket:');
-  console.log('Example: git@bitbucket.org:pixelant/xxx.git');
-  console.log('--------------------------------');
-  var prompts = [{
-    name: 'gitt',
-    message: 'SSH link'
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.gitt = props.gitt;
-    this.go = 0;
-    if (this.gitt.length > 31 && this.gitt.slice(0,27)==='git@bitbucket.org:pixelant/' && this.gitt.slice(-4)==='.git') {
-        this.dirr = props.gitt.replace('git@bitbucket.org:pixelant/', '').replace('.git', '');
-        this.go = 1;
-    } else {
-      console.log('');
-      log.error('ERROR');
-      console.log('Wrong repository name, try again...');
-    }
-
-    cb();
-  }.bind(this));
+    this.prompt(prompts, function (props) {
+        this.gitt = props.gitt;
+        this.go = 0;
+        if (this.gitt.length > 31 && this.gitt.slice(0, 27) === 'git@bitbucket.org:pixelant/' && this.gitt.slice(-4) === '.git') {
+            this.dirr = props.gitt.replace('git@bitbucket.org:pixelant/', '').replace('.git', '');
+            this.go = 1;
+        } else {
+            console.log('');
+            log.error('ERROR');
+            console.log('Wrong repository name, try again...');
+        }
+        cb();
+    }.bind(this));
 };
 
 PxaFrontendGenerator.prototype.app = function app() {
@@ -89,6 +82,5 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.copy('src/templates/parts/nav.hbs', 'src/templates/parts/nav.hbs');
         this.copy('src/templates/parts/scripts.hbs', 'src/templates/parts/scripts.hbs');
         this.copy('src/templates/parts/slider.hbs', 'src/templates/parts/slider.hbs');
-
-    };
+    }
 };
