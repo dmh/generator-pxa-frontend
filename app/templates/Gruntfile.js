@@ -1,11 +1,14 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var PORT = 9004;
+var tempp;
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     var mainn = {
         dist: 'foundation_static_site',
-        repo: '<%= (dirr) %>'
+        repo: '<%= (dirr) %>',
+        gitLink: '<%= (gitt) %>',
+        repoExt: '<%= (dirr) %>/typo3conf'
     };
 
     grunt.initConfig({
@@ -101,6 +104,21 @@ module.exports = function (grunt) {
             },
         },
 
+        shell: {
+            gitClone: {
+                options: {
+                    stdout: true
+                },
+                command: 'if [ ! -d <%%= main.repo %> ]; then git clone <%%= main.gitLink %> ; fi'
+            },
+            // checkOs: {
+            //     options: {
+            //         stdout: true
+            //     },
+            //     command: 'if [ ! -d <%%= main.repoExt %> ]; then grunt shared_start; else grunt start; fi'
+            // }
+        },
+
         copy: {
             bowerToExt: {
                 files: [
@@ -168,6 +186,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('assemble');
 
     grunt.registerTask('start_part-one', [
+        // 'shell:gitClone',
         'clean:fStaticSite',
         'mkdir',
         'copy:styles',
@@ -195,22 +214,23 @@ module.exports = function (grunt) {
         'clean:tempExt',
         'clean:foundation'
     ]);
-    grunt.registerTask('commit', function () {
-        grunt.log.writeln('').writeln('Now you can commit your changes, write (.\/commit) in Terminal(MAC), or (commit) in Terminal(Windows) '.magenta);
-    });
+    // grunt.registerTask('commit', function () {
+    //     grunt.log.writeln('').writeln('Now you can commit your changes, write (.\/commit) in Terminal(MAC), or (commit) in Terminal(Windows) '.magenta);
+    // });
 
 
     grunt.registerTask('start', function () {
         grunt.task.run(['start_part-one']);
         grunt.task.run(['start_part-two']);
-        process.on('SIGINT', function () {
-            grunt.task.run(['end']);
-            grunt.task.run(['commit']);
-            grunt.task.current.async()();
-        });
+        // process.on('SIGINT', function () {
+        //     grunt.task.run(['end']);
+        //     grunt.task.run(['commit']);
+        //     grunt.task.current.async()();
+        // });
     });
 
     grunt.registerTask('shared_start_part-one', [
+        // 'shell:gitClone',
         'clean:fStaticSite',
         'mkdir',
         'copy:styles',
@@ -241,8 +261,56 @@ module.exports = function (grunt) {
     grunt.registerTask('shared_start', function () {
         grunt.task.run(['shared_start_part-one']);
         grunt.task.run(['shared_start_part-two']);
+        // process.on('SIGINT', function () {
+        //     grunt.task.run(['shared_end']);
+        //     grunt.task.run(['commit']);
+        //     grunt.task.current.async()();
+        // });
+    });
+
+
+    // grunt.registerTask('default', function () {
+    //     grunt.task.run(['shell:gitClone']);
+    //     grunt.task.run(['shell:checkOs']);
+    //     process.on('SIGINT', function () {
+    //         if (grunt.file.isDir('<%%= main.repoExt %>')) {
+    //             grunt.task.run(['end']);
+    //         } else {
+    //             grunt.task.run(['shared_end']);
+    //         }
+    //         grunt.task.run(['commit']);
+    //         // grunt.task.current.async()();
+    //     });
+    // });
+    // grunt.registerTask('file', function () {
+    //     grunt.log.writeln('').writeln('file'.magenta);
+    // });
+    //     grunt.registerTask('folder', function () {
+    //     grunt.log.writeln('').writeln('folder '.magenta);
+    // });
+
+
+
+    grunt.registerTask('default', function () {
+        grunt.task.run(['shell:gitClone']);
+        if (grunt.file.isFile('<%%= main.repoExt %>', 'ext')) {
+            // grunt.task.run(['file']);
+            grunt.task.run(['shared_start']);
+            tempp = 1;
+        } else {
+            // grunt.task.run(['folder']);
+            grunt.task.run(['start']);
+            tempp = 2;
+        }
+        // temp === 2 && grunt.task.run(['start']);
+        // temp === 1 && grunt.task.run(['shared_start']);
+        // grunt.task.run(['watch']);
         process.on('SIGINT', function () {
-            grunt.task.run(['shared_end']);
+            if (tempp === 2) {
+                grunt.task.run(['end']);
+            } else {
+                grunt.task.run(['shared_end']);
+            }
             grunt.task.run(['commit']);
             grunt.task.current.async()();
         });

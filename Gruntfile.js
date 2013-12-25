@@ -12,6 +12,6 @@ module.exports = function (grunt) {
                 'app/templates/Gruntfile.js',
                 'app/index.js'
             ]
-        },
+        }
     });
 };
