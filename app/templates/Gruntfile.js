@@ -211,10 +211,12 @@ module.exports = function (grunt) {
         'assemble',
         'connect:livereload'
     ]);
-    grunt.registerTask('start_part-two', function () {
-        grunt.log.writeln('').writeln('Press  (CTRL + C) to stop watch process'.magenta);
-        grunt.task.run(['watch']);
+
+    grunt.registerTask('start', function () {
+        grunt.task.run(['start_part-one']);
+        grunt.task.run(['watch_task']);
     });
+
     grunt.registerTask('end', [
         'clean:bowerPackFromTypo3Ext',
         'clean:typo3Bootstrap',
@@ -223,75 +225,47 @@ module.exports = function (grunt) {
         'clean:foundation'
     ]);
 
-    grunt.registerTask('start', function () {
-        grunt.task.run(['start_part-one']);
-        grunt.task.run(['start_part-two']);
+    grunt.registerTask('shared_start_part-one', [
+        'clean:fStaticSite',
+        'mkdir',
+        'copy:styles',
+        'copy:stylesFix',
+        'copy:extFileToTemp',
+        'clean:typo3Ext',
+        'copy:bowerToExt',
+        'copy:bootstrapToExt',
+        'copy:font',
+        'copy:img',
+        'less:dev',
+        'assemble',
+        'connect:livereload'
+    ]);
+
+    grunt.registerTask('shared_start', function () {
+        grunt.task.run(['shared_start_part-one']);
+        grunt.task.run(['watch_task']);
     });
 
-
-// ====================Windows===========
-    // grunt.registerTask('shared_start_part-one', [
-    //     'clean:fStaticSite',
-    //     'mkdir',
-    //     'copy:styles',
-    //     'copy:stylesFix',
-    //     'copy:extFileToTemp',
-    //     'clean:typo3Ext',
-    //     'copy:bowerToExt',
-    //     'copy:bootstrapToExt',
-    //     'copy:font',
-    //     'copy:img',
-    //     'less:dev',
-    //     'assemble',
-    //     'connect:livereload'
-    // ]);
-    // grunt.registerTask('shared_start_part-two', function () {
-    //     grunt.log.writeln('').writeln('Press (CTRL + C) to stop watch process'.magenta);
-    //     grunt.task.run(['watch']);
-    // });
-    // grunt.registerTask('shared_end', [
-    //     'clean:typo3Ext',
-    //     'copy:extFileFromTemp',
-    //     'clean:tempExt'
-    // ]);
-// =============================
+    grunt.registerTask('shared_end', [
+        'clean:typo3Ext',
+        'copy:extFileFromTemp',
+        'clean:tempExt'
+    ]);
 
     grunt.registerTask('commit', function () {
-        grunt.log.writeln('').writeln('--------------------------------------------------'.magenta).writeln('Now you can commit your changes'.magenta).writeln('Enter ( ./commit ) in Terminal(MAC), or ( commit ) in Terminal(Windows)'.magenta).writeln('').writeln('• Also you can check your pxa modules using command ( ./pxa-list ) Mac, ( pxa-list ) Windows, or simple enter ( bower list ) everywhere.'.cyan).writeln('• To update pxa modules enter ( ./update ) Mac or ( update ) Windows'.cyan);
+        grunt.log.writeln('').writeln('-------------------------------------------------------'.magenta).writeln('Now you can commit your changes'.magenta).writeln('Enter ( ./commit ) in Terminal(MAC), or ( commit ) in Terminal(Windows)'.magenta).writeln('-------------------------------------------------------'.magenta).writeln('').writeln('Also you can check your pxa modules using command:'.cyan).writeln(' • (./pxa-list ) Mac'.cyan).writeln(' • ( pxa-list ) Windows'.cyan).writeln(' • Or enter ( bower list ) everywhere'.cyan).writeln('To update pxa modules enter:'.cyan).writeln(' • ( ./update ) Mac'.cyan).writeln(' • ( update ) Windows'.cyan).writeln('-------------------------------------------------------'.cyan);
     });
 
-    // grunt.registerTask('shared_start', function () {
-    //     grunt.task.run(['shared_start_part-one']);
-    //     grunt.task.run(['shared_start_part-two']);
-    //     // process.on('SIGINT', function () {
-    //     //     grunt.task.run(['shared_end']);
-    //     //     grunt.task.run(['commit']);
-    //     //     grunt.task.current.async()();
-    //     // });
-    // });
+    grunt.registerTask('watch_task', function () {
+        grunt.log.writeln('').writeln('Press  (CTRL + C) to stop watch process'.magenta);
+        grunt.task.run(['watch']);
+    });
 
-
-    grunt.registerTask('default', function () {
+    grunt.registerTask('go', function () {
         grunt.task.run(['shell:gitClone']);
         grunt.task.run(['mkdir:fonDir']);
-
-
-        // if (grunt.file.isFile('<%%= main.repoExt %>', 'ext')) {
-        //     grunt.task.run(['shared_start']);
-        //     tempp = 1;
-        // } else {
-        //     grunt.task.run(['start']);
-        //     tempp = 2;
-        // }
-
         grunt.task.run(['start']);
         process.on('SIGINT', function () {
-
-            // if (tempp === 2) {
-            //     grunt.task.run(['end']);
-            // } else {
-            //     grunt.task.run(['shared_end']);
-            // }
             grunt.task.run(['end']);
             grunt.task.run(['commit']);
             grunt.task.current.async()();
