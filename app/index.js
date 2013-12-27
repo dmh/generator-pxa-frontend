@@ -26,10 +26,16 @@ PxaFrontendGenerator.prototype.askFor = function askFor() {
     var prompts = [{
         name: 'gitt',
         message: 'SSH link'
+    }, {
+        type: 'confirm',
+        name: 'shared',
+        message: 'Shared installation, or no? (default: Yes)',
+        default: true
     }];
 
     this.prompt(prompts, function (props) {
         this.gitt = props.gitt;
+        this.shared = props.shared;
         this.go = 0;
         if (this.gitt.length > 31 && this.gitt.slice(0, 27) === 'git@bitbucket.org:pixelant/' && this.gitt.slice(-4) === '.git') {
             this.dirr = props.gitt.replace('git@bitbucket.org:pixelant/', '').replace('.git', '');
@@ -58,7 +64,6 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.copy('_commit', 'commit');
         this.copy('_update', 'update');
         this.copy('_pxa-list', 'pxa-list');
-        this.copy('_dir', 'dir');
         this.copy('gitignore', '.gitignore');
         this.copy('editorconfig', '.editorconfig');
         this.copy('jshintrc', '.jshintrc');
