@@ -23,6 +23,7 @@
     "smarttabs": true,
     "jquery": true,
     "maxparams": 4,
+    "maxdepth": 4,
     "forin": true,
     "white": true
 }
