@@ -2,8 +2,18 @@
 var LIVERELOAD_PORT = 35729;
 var PORT = 9004;
 var tempp;
+// var fonSymLink;
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
+
+    var exec = require('child_process').exec,
+    child;
+    // fonVer;
+    // if (fonSymLink === 1) {
+    //     fonVer = grunt.file.read('dir');
+    // } else {
+    //     fonVer = 'foundation';
+    // }
     var mainn = {
         dist: 'foundation_static_site',
         repo: '<%= (dirr) %>',
@@ -13,6 +23,16 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         main: mainn,
+        fonVerObj: function () {
+            if (grunt.file.read('dir')) {
+                var rtrr = grunt.file.read('dir');
+                var asd = rtrr.slice(0, -1);
+                // return grunt.file.read('dir');
+                return asd;
+            } else {
+                return 'foundation';
+            }
+        },
         watch: {
             html: {
                 files: ['src/**/*.hbs'],
@@ -90,7 +110,7 @@ module.exports = function (grunt) {
         clean: {
             fStaticSite: ['<%%= main.dist %>/*'],
             typo3Ext: ['<%%= main.repo %>/typo3conf/ext'],
-            foundation: ['foundation/typo3conf/ext/**/*'],
+            foundation: ['<%%= fonVerObj() %>'],
             bowerPackFromTypo3Ext: ['<%%= main.repo %>/typo3conf/ext/pxa_bootstrap', '<%%= main.repo %>/typo3conf/ext/pxa_fluidcontent', '<%%= main.repo %>/typo3conf/ext/pxa_foundation', '<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout'],
             tempExt: ['temp/pxa_ext/*'],
             typo3Bootstrap: ['<%%= main.repo %>/typo3conf/ext/bootstrap', '<%%= main.repo %>/typo3conf/ext/jquery']
@@ -100,6 +120,11 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     create: ['<%%= main.dist %>/assets']
+                },
+            },
+            fonDir: {
+                options: {
+                    create: ['<%%= fonVerObj() %>/typo3conf/ext']
                 },
             },
         },
@@ -132,12 +157,12 @@ module.exports = function (grunt) {
             },
             bowerToFoundation: {
                 files: [
-                    {expand: true, cwd: 'bower_components/', src: ['**'], dest: 'foundation/typo3conf/ext'}
+                    {expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext'}
                 ]
             },
             bootstrapToFoundation: {
                 files: [
-                    {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: 'foundation/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
+                    {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
                 ]
             },
             font: {
@@ -187,6 +212,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('start_part-one', [
         // 'shell:gitClone',
+        // 'mkdir:fonDir',
         'clean:fStaticSite',
         'mkdir',
         'copy:styles',
@@ -255,7 +281,7 @@ module.exports = function (grunt) {
         'clean:tempExt'
     ]);
     grunt.registerTask('commit', function () {
-        grunt.log.writeln('').writeln('Now you can commit your changes, write (.\/commit) in Terminal(MAC), or (commit) in Terminal(Windows) '.magenta);
+        grunt.log.writeln('').writeln('--------------------------------------------------'.magenta).writeln('Now you can commit your changes'.magenta).writeln('Enter ( ./commit ) in Terminal(MAC), or ( commit ) in Terminal(Windows)'.magenta).writeln('').writeln('• Also you can check your pxa modules using command ( ./pxa-list ) Mac, ( pxa-list ) Windows, or simple enter ( bower list ) everywhere.'.cyan).writeln('• To update pxa modules enter ( ./update ) Mac or ( update ) Windows'.cyan);
     });
 
     grunt.registerTask('shared_start', function () {
@@ -290,9 +316,31 @@ module.exports = function (grunt) {
     // });
 
 
+    grunt.registerTask('fonLink', function () {
+        var cb = this.async();
+        child = exec('readlink **/foundationDir', function (error, stdout) {
+          // ttt = stdout.slice(3);
+          // console.log(ttt);
+        // grunt.log.writeln('').writeln(ttt);
+            grunt.file.write('dir', stdout.slice(3));
+            cb();
+        // return ttt;
+    // grunt.task.run(['mkdir:fonDir']);
+        });
+
+    });
+
 
     grunt.registerTask('default', function () {
         grunt.task.run(['shell:gitClone']);
+        grunt.task.run(['fonLink']);
+        grunt.task.run(['mkdir:fonDir']);
+
+        // if (grunt.file.read('dir') !== '') {
+        //     fonSymLink = 1;
+        //     // grunt.task.run(['fonLink']);
+        //     // fonVer = grunt.file.read('dir');
+        // }
         if (grunt.file.isFile('<%%= main.repoExt %>', 'ext')) {
             // grunt.task.run(['file']);
             grunt.task.run(['shared_start']);

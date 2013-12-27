@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bower update pxa_bootstrap
+bower update pxa_fluidcontent
+bower update pxa_foundation
+bower update pxa_foundation_layout

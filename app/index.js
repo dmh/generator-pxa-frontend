@@ -53,13 +53,14 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.mkdir('src/templates/layouts');
         this.mkdir('src/templates/pages');
         this.mkdir('src/templates/parts');
-        this.mkdir('foundation');
-        this.mkdir('foundation/typo3conf');
-        this.mkdir('foundation/typo3conf/ext');
         this.copy('_package.json', 'package.json');
         this.copy('_bower.json', 'bower.json');
         this.copy('_commit', 'commit');
+        this.copy('_update', 'update');
+        this.copy('_pxa-list', 'pxa-list');
+        this.copy('_dir', 'dir');
         this.copy('gitignore', '.gitignore');
+        this.copy('editorconfig', '.editorconfig');
         this.copy('jshintrc', '.jshintrc');
         this.copy('_start', 'start');
         this.copy('styles.css', 'styles.css');
