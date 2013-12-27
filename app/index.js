@@ -64,6 +64,7 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.copy('_commit', 'commit');
         this.copy('_update', 'update');
         this.copy('_pxa-list', 'pxa-list');
+        this.copy('_win-start', 'win-start');
         this.copy('gitignore', '.gitignore');
         this.copy('editorconfig', '.editorconfig');
         this.copy('jshintrc', '.jshintrc');

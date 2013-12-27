@@ -1,0 +1,20 @@
+#!/bin/bash
+
+DIRECTORY="<%= (dirr) %>"
+FDIRECTORY="<%= (dirr) %>/typo3conf/ext"
+GIT="<%= (gitt) %>"
+
+if [ ! -d "$DIRECTORY" ]; then
+  git clone $GIT
+fi
+
+if [ ! -d "$FDIRECTORY" ]; then
+    grunt shared_start
+    grunt shared_end
+    grunt commit
+else
+    grunt mkdir:fonDir
+    grunt start
+    grunt end
+    grunt commit
+fi
