@@ -227,7 +227,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('shared_start_part-one', [
         'clean:fStaticSite',
-        'mkdir',
+        'mkdir:all',
         'copy:styles',
         'copy:stylesFix',
         'copy:extFileToTemp',
