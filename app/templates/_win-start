@@ -7,7 +7,7 @@ GIT="<%= (gitt) %>"
 if [ ! -d "$DIRECTORY" ]; then
   git clone $GIT
 fi
-
+trap "echo ." SIGINT SIGTERM
 if [ ! -d "$FDIRECTORY" ]; then
     grunt shared_start
     grunt shared_end
