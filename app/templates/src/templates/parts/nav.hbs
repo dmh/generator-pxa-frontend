@@ -63,8 +63,32 @@
     </nav>
 
 
+    <!-- mobile nav starts -->
+    <div class="mobile-nav">
+    <a href="javascript:void(0);" class="mobile-trigger closed">Meny<i class="icon-list"></i></a>
+        <nav role="navigation">
+            <ul class="mobile-menu">
+                <li{{#is basename 'index'}} class="active"{{/is}}>
+                    <a href="http://localhost:9004/index.html">Hem</a>
+                </li>
+                <li{{#is basename 'om-foretaget'}} class="active"{{/is}}>
+                    <a href="http://localhost:9004/om-foretaget.html">Om företaget</a>
+                </li>
+                <li{{#is basename 'funktioner'}} class="active"{{/is}}>
+                    <a href="http://localhost:9004/funktioner.html">Funktioner</a>
+                </li>
+                <li{{#is basename 'nyheter'}} class="active"{{/is}}>
+                    <a href="http://localhost:9004/nyheter.html">Nyheter</a>
+                </li>
+                <li{{#is basename 'kontakt'}} class="active"{{/is}}>
+                    <a href="http://localhost:9004/kontakt.html">Kontakt</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-<!-- mobile nav ends -->
+    <!-- mobile nav ends -->
+
 
 <!-- searching starts -->
 <form class="searching" action="/sok/"><fieldset><input class="quicksearch" type="text" value="" autocomplete="off" /></fieldset></form>
