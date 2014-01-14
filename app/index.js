@@ -5,49 +5,48 @@ var path = require('path');
 var log = require('color-log');
 var yeoman = require('yeoman-generator');
 
-
-var PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
-        this.on('end', function () {
-          if (this.go === 1) {
-          this.installDependencies({ skipInstall: options['skip-install'] });
-          };
+var PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options) {
+    yeoman.generators.Base.apply(this, arguments);
+    this.on('end', function () {
+            if (this.go === 1) {
+                this.installDependencies({ skipInstall: options['skip-install'] });
+            }
         });
-
-
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
 util.inherits(PxaFrontendGenerator, yeoman.generators.Base);
 
 PxaFrontendGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    var cb = this.async();
+    console.log('');
+    log.mark('Project repository in bitbucket:');
+    console.log('Example: git@bitbucket.org:pixelant/xxx.git');
+    console.log('--------------------------------');
+    var prompts = [{
+        name: 'gitt',
+        message: 'SSH link'
+    }, {
+        type: 'confirm',
+        name: 'shared',
+        message: 'Shared installation, or no? (default: Yes)',
+        default: true
+    }];
 
-  // have Yeoman greet the user.
-
-  console.log('');
-  log.mark('Project repository in bitbucket:');
-  console.log('Example: git@bitbucket.org:pixelant/xxx.git');
-  console.log('--------------------------------');
-  var prompts = [{
-    name: 'gitt',
-    message: 'SSH link'
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.gitt = props.gitt;
-    this.go = 0;
-    if (this.gitt.length > 31 && this.gitt.slice(0,27)==='git@bitbucket.org:pixelant/' && this.gitt.slice(-4)==='.git') {
-        this.dirr = props.gitt.replace('git@bitbucket.org:pixelant/', '').replace('.git', '');
-        this.go = 1;
-    } else {
-      console.log('');
-      log.error('ERROR');
-      console.log('Wrong repository name, try again...');
-    }
-
-    cb();
-  }.bind(this));
+    this.prompt(prompts, function (props) {
+        this.gitt = props.gitt;
+        this.shared = props.shared;
+        this.go = 0;
+        if (this.gitt.length > 31 && this.gitt.slice(0, 27) === 'git@bitbucket.org:pixelant/' && this.gitt.slice(-4) === '.git') {
+            this.dirr = props.gitt.replace('git@bitbucket.org:pixelant/', '').replace('.git', '');
+            this.go = 1;
+        } else {
+            console.log('');
+            log.error('ERROR');
+            console.log('Wrong repository name, try again...');
+        }
+        cb();
+    }.bind(this));
 };
 
 PxaFrontendGenerator.prototype.app = function app() {
@@ -60,13 +59,14 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.mkdir('src/templates/layouts');
         this.mkdir('src/templates/pages');
         this.mkdir('src/templates/parts');
-        this.mkdir('foundation');
-        this.mkdir('foundation/typo3conf');
-        this.mkdir('foundation/typo3conf/ext');
         this.copy('_package.json', 'package.json');
         this.copy('_bower.json', 'bower.json');
         this.copy('_commit', 'commit');
+        this.copy('_update', 'update');
+        this.copy('_pxa-list', 'pxa-list');
+        this.copy('_win-start', 'win-start');
         this.copy('gitignore', '.gitignore');
+        this.copy('editorconfig', '.editorconfig');
         this.copy('jshintrc', '.jshintrc');
         this.copy('_start', 'start');
         this.copy('styles.css', 'styles.css');
@@ -89,6 +89,5 @@ PxaFrontendGenerator.prototype.app = function app() {
         this.copy('src/templates/parts/nav.hbs', 'src/templates/parts/nav.hbs');
         this.copy('src/templates/parts/scripts.hbs', 'src/templates/parts/scripts.hbs');
         this.copy('src/templates/parts/slider.hbs', 'src/templates/parts/slider.hbs');
-
-    };
+    }
 };
