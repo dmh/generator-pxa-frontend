@@ -1,10 +1,6 @@
 # Generator-pxa-frontend 
 
-[![Build Status](https://secure.travis-ci.org/dmh/generator-pxa-frontend.png?branch=master)](https://travis-ci.org/dmh/generator-pxa-frontend)
-
-[![NPM version](https://badge.fury.io/js/generator-pxa-frontend.png)](http://badge.fury.io/js/generator-pxa-frontend)
-
-[![Dependency Status](https://david-dm.org/dmh/generator-pxa-frontend.png)](https://david-dm.org/dmh/generator-pxa-frontend)
+[![Build Status](https://secure.travis-ci.org/dmh/generator-pxa-frontend.png?branch=master)](https://travis-ci.org/dmh/generator-pxa-frontend)  [![NPM version](https://badge.fury.io/js/generator-pxa-frontend.png)](http://badge.fury.io/js/generator-pxa-frontend)  [![Dependency Status](https://david-dm.org/dmh/generator-pxa-frontend.png)](https://david-dm.org/dmh/generator-pxa-frontend)
 
 ##Pxa-frontend
 [Pxa-frontend](https://npmjs.org/package/generator-pxa-frontend "Pxa-frontend") 
@@ -19,6 +15,7 @@ Components what you need:
     `sudo npm install -g grunt-cli`
     &
     `sudo npm install -g bower`
+
     ####_Links:_
  * [Bower](http://bower.io/ "bower") 
  * [Grunt](http://gruntjs.com/ "gruntjs") 
@@ -26,6 +23,7 @@ Components what you need:
 
 4. And of course you should install  generator-pxa-frontend: 
     `sudo npm install -g generator-pxa-frontend`
+
 ***
 
 ####Now you have frontend script in your computer
@@ -49,6 +47,7 @@ or
 Enter ( **./commit** ) in Terminal (_MAC_), or ( **commit** ) in Terminal (_Windows_)
 It automatically commit and push your changes to bitbucket.
 __Important!__ Testing commit function in test project.
+
 ***
 
 ####Also you can check your pxa modules using command:
