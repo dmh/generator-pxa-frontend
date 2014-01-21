@@ -52,8 +52,10 @@ module.exports = function (grunt) {
         connect: {
             options: {
                 port: PORT,
-                livereload: 35729,
+                livereload: LIVERELOAD_PORT,
+                keepalive: true,
                 hostname: '0.0.0.0'
+                // hostname: 'localhost'
             },
             livereload: {
                 options: {
@@ -211,7 +213,7 @@ module.exports = function (grunt) {
         'copy:img',
         'less:dev',
         'assemble',
-        'connect:livereload'
+        'connect'
     ]);
 
     grunt.registerTask('start', function () {
@@ -240,7 +242,7 @@ module.exports = function (grunt) {
         'copy:img',
         'less:dev',
         'assemble',
-        'connect:livereload'
+        'connect'
     ]);
 
     grunt.registerTask('shared_start', function () {
@@ -293,8 +295,8 @@ module.exports = function (grunt) {
         grunt.task.run(['ip']);
         grunt.task.run(['start']);
         process.on('SIGINT', function () {
-            grunt.task.run(['ip']);
             grunt.task.run(['end']);
+            grunt.task.run(['ip']);
             grunt.task.run(['commit']);
             grunt.task.current.async()();
         });
