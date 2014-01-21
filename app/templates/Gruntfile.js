@@ -6,8 +6,8 @@ var PORT = 9004;
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     var fs = require('fs'),
-        os = require('os'),
-        ipAdress = os.networkInterfaces().en1[1].address;
+        os = require('os');
+        // ipAdress = os.networkInterfaces().en1[1].address;
     var mainn = {
         dist: 'foundation_static_site',
         repo: '<%= (dirr) %>',
@@ -292,11 +292,11 @@ module.exports = function (grunt) {
     grunt.registerTask('go', function () {
         grunt.task.run(['shell:gitClone']);
         grunt.task.run(['mkdir:fonDir']);
-        grunt.task.run(['ip']);
+        // grunt.task.run(['ip']);
         grunt.task.run(['start']);
         process.on('SIGINT', function () {
             grunt.task.run(['end']);
-            grunt.task.run(['ip']);
+            // grunt.task.run(['ip']);
             grunt.task.run(['commit']);
             grunt.task.current.async()();
         });
