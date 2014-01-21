@@ -5,8 +5,8 @@ var PORT = 9004;
 
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
-    var fs = require('fs'),
-        os = require('os');
+    var fs = require('fs');
+        // os = require('os');
         // ipAdress = os.networkInterfaces().en1[1].address;
     var mainn = {
         dist: 'foundation_static_site',
@@ -265,29 +265,29 @@ module.exports = function (grunt) {
         grunt.task.run(['watch']);
     });
 
-    grunt.registerTask('ip', function () {
-        var files = ['src/templates/parts/head.hbs', 'src/templates/parts/nav.hbs'];
-        function changeIp(file) {
-            var readFile = fs.readFileSync(file, 'utf8');
-            var result = readFile.replace(/localhost/g, ipAdress);
-            fs.writeFileSync(file, result, 'utf8', function () {
-            });
-        }
-        function returnIp(file) {
-            var readFile = fs.readFileSync(file, 'utf8');
-            var result = readFile.replace(new RegExp(ipAdress, 'g'), 'localhost');
-            fs.writeFileSync(file, result, 'utf8', function () {
-            });
-        }
+    // grunt.registerTask('ip', function () {
+    //     var files = ['src/templates/parts/head.hbs', 'src/templates/parts/nav.hbs'];
+    //     function changeIp(file) {
+    //         var readFile = fs.readFileSync(file, 'utf8');
+    //         var result = readFile.replace(/localhost/g, ipAdress);
+    //         fs.writeFileSync(file, result, 'utf8', function () {
+    //         });
+    //     }
+    //     function returnIp(file) {
+    //         var readFile = fs.readFileSync(file, 'utf8');
+    //         var result = readFile.replace(new RegExp(ipAdress, 'g'), 'localhost');
+    //         fs.writeFileSync(file, result, 'utf8', function () {
+    //         });
+    //     }
 
-        for (var i = 0; i < files.length; i += 1) {
-            if (fs.readFileSync(files[i], 'utf8').search('localhost') !== -1) {
-                changeIp(files[i]);
-            } else {
-                returnIp(files[i]);
-            }
-        }
-    });
+    //     for (var i = 0; i < files.length; i += 1) {
+    //         if (fs.readFileSync(files[i], 'utf8').search('localhost') !== -1) {
+    //             changeIp(files[i]);
+    //         } else {
+    //             returnIp(files[i]);
+    //         }
+    //     }
+    // });
 
     grunt.registerTask('go', function () {
         grunt.task.run(['shell:gitClone']);

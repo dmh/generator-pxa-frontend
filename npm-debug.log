@@ -1,0 +1,206 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.23
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/dmytro/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+12 verbose folder .
+13 info prepublish generator-pxa-frontend@0.0.8
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/dmytro/.npm/1f1177db-tar.lock
+16 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+17 verbose lock tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz /Users/dmytro/.npm/55bf5d35-5244-0-39702521939761937-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+21 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+22 verbose tar unpack /var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+23 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+24 verbose lock tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package /Users/dmytro/.npm/5e6ea923-5244-0-39702521939761937-package.lock
+25 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+26 verbose lock tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz /Users/dmytro/.npm/55bf5d35-5244-0-39702521939761937-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry .npmignore
+30 silly gunzTarPerm extractEntry README.md
+31 silly gunzTarPerm extractEntry LICENSE
+32 silly gunzTarPerm extractEntry Gruntfile.js
+33 silly gunzTarPerm extractEntry .gitattributes
+34 silly gunzTarPerm extractEntry .travis.yml
+35 silly gunzTarPerm extractEntry .jshintrc
+36 silly gunzTarPerm extractEntry app/index.js
+37 silly gunzTarPerm extractEntry app/templates/Gruntfile.js
+38 silly gunzTarPerm extractEntry app/templates/styles.css
+39 silly gunzTarPerm extractEntry app/templates/_commit
+40 silly gunzTarPerm extractEntry app/templates/_package.json
+41 silly gunzTarPerm extractEntry app/templates/_pxa-list
+42 silly gunzTarPerm extractEntry app/templates/_start
+43 silly gunzTarPerm extractEntry app/templates/_update
+44 silly gunzTarPerm extractEntry app/templates/_bower.json
+45 silly gunzTarPerm extractEntry app/templates/editorconfig
+46 silly gunzTarPerm extractEntry app/templates/fix.css
+47 silly gunzTarPerm extractEntry app/templates/gitattributes
+48 silly gunzTarPerm extractEntry app/templates/gitignore
+49 silly gunzTarPerm extractEntry app/templates/jshintrc
+50 silly gunzTarPerm extractEntry app/templates/src/templates/layouts/layout.hbs
+51 silly gunzTarPerm extractEntry app/templates/src/templates/pages/funktioner.hbs
+52 silly gunzTarPerm extractEntry app/templates/src/templates/pages/index.hbs
+53 silly gunzTarPerm extractEntry app/templates/src/templates/pages/kontakt.hbs
+54 silly gunzTarPerm extractEntry app/templates/src/templates/pages/nyheter.hbs
+55 silly gunzTarPerm extractEntry app/templates/src/templates/pages/om-foretaget.hbs
+56 silly gunzTarPerm extractEntry app/templates/src/templates/pages/test.hbs
+57 silly gunzTarPerm extractEntry app/templates/src/templates/pages/test2.hbs
+58 silly gunzTarPerm extractEntry app/templates/src/templates/pages/undersida-2-niva-2.hbs
+59 silly gunzTarPerm extractEntry app/templates/src/templates/pages/undersida-niva-2.hbs
+60 silly gunzTarPerm extractEntry app/templates/src/templates/parts/footer.hbs
+61 silly gunzTarPerm extractEntry app/templates/src/templates/parts/head.hbs
+62 silly gunzTarPerm extractEntry app/templates/src/templates/parts/header.hbs
+63 silly gunzTarPerm extractEntry app/templates/src/templates/parts/nav.hbs
+64 silly gunzTarPerm extractEntry app/templates/src/templates/parts/scripts.hbs
+65 silly gunzTarPerm extractEntry app/templates/src/templates/parts/slider.hbs
+66 silly gunzTarPerm extractEntry app/templates/_win-start
+67 silly gunzTarPerm extractEntry .editorconfig
+68 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+69 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+70 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+71 silly lockFile 55bf5d35-5244-0-39702521939761937-tmp-tgz tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/tmp.tgz
+72 verbose tar pack [ '/Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz',
+72 verbose tar pack   '/var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package' ]
+73 verbose tarball /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+74 verbose folder /var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+75 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+76 verbose lock tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package /Users/dmytro/.npm/5e6ea923-5244-0-39702521939761937-package.lock
+77 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+78 verbose lock tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz /Users/dmytro/.npm/2ac642ad-r-pxa-frontend-0-0-8-package-tgz.lock
+79 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+80 silly lockFile 5e6ea923-5244-0-39702521939761937-package tar:///var/folders/fh/_8t2xy6n4z98n5khv2dt5hyh0000gp/T/npm-19720-ffFIQsMX/1390309775244-0.39702521939761937/package
+81 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+82 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+83 silly lockFile 27dfb7e8-rator-pxa-frontend-0-0-8-package /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+84 verbose lock /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package /Users/dmytro/.npm/27dfb7e8-rator-pxa-frontend-0-0-8-package.lock
+85 silly lockFile 27dfb7e8-rator-pxa-frontend-0-0-8-package /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+86 silly lockFile 27dfb7e8-rator-pxa-frontend-0-0-8-package /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+87 verbose tar unpack /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+88 silly lockFile ccb8da31-rator-pxa-frontend-0-0-8-package tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+89 verbose lock tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package /Users/dmytro/.npm/ccb8da31-rator-pxa-frontend-0-0-8-package.lock
+90 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+91 verbose lock tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz /Users/dmytro/.npm/2ac642ad-r-pxa-frontend-0-0-8-package-tgz.lock
+92 silly gunzTarPerm modes [ '755', '644' ]
+93 silly gunzTarPerm extractEntry package.json
+94 silly gunzTarPerm extractEntry .npmignore
+95 silly gunzTarPerm extractEntry README.md
+96 silly gunzTarPerm extractEntry LICENSE
+97 silly gunzTarPerm extractEntry Gruntfile.js
+98 silly gunzTarPerm extractEntry .editorconfig
+99 silly gunzTarPerm extractEntry .gitattributes
+100 silly gunzTarPerm extractEntry .jshintrc
+101 silly gunzTarPerm extractEntry .travis.yml
+102 silly gunzTarPerm extractEntry app/index.js
+103 silly gunzTarPerm extractEntry app/templates/Gruntfile.js
+104 silly gunzTarPerm extractEntry app/templates/styles.css
+105 silly gunzTarPerm extractEntry app/templates/_commit
+106 silly gunzTarPerm extractEntry app/templates/_package.json
+107 silly gunzTarPerm extractEntry app/templates/_pxa-list
+108 silly gunzTarPerm extractEntry app/templates/_start
+109 silly gunzTarPerm extractEntry app/templates/_update
+110 silly gunzTarPerm extractEntry app/templates/_bower.json
+111 silly gunzTarPerm extractEntry app/templates/editorconfig
+112 silly gunzTarPerm extractEntry app/templates/fix.css
+113 silly gunzTarPerm extractEntry app/templates/gitattributes
+114 silly gunzTarPerm extractEntry app/templates/gitignore
+115 silly gunzTarPerm extractEntry app/templates/jshintrc
+116 silly gunzTarPerm extractEntry app/templates/src/templates/layouts/layout.hbs
+117 silly gunzTarPerm extractEntry app/templates/src/templates/pages/funktioner.hbs
+118 silly gunzTarPerm extractEntry app/templates/src/templates/pages/index.hbs
+119 silly gunzTarPerm extractEntry app/templates/src/templates/pages/kontakt.hbs
+120 silly gunzTarPerm extractEntry app/templates/src/templates/pages/nyheter.hbs
+121 silly gunzTarPerm extractEntry app/templates/src/templates/pages/om-foretaget.hbs
+122 silly gunzTarPerm extractEntry app/templates/src/templates/pages/test.hbs
+123 silly gunzTarPerm extractEntry app/templates/src/templates/pages/test2.hbs
+124 silly gunzTarPerm extractEntry app/templates/src/templates/pages/undersida-2-niva-2.hbs
+125 silly gunzTarPerm extractEntry app/templates/src/templates/pages/undersida-niva-2.hbs
+126 silly gunzTarPerm extractEntry app/templates/src/templates/parts/footer.hbs
+127 silly gunzTarPerm extractEntry app/templates/src/templates/parts/head.hbs
+128 silly gunzTarPerm extractEntry app/templates/src/templates/parts/header.hbs
+129 silly gunzTarPerm extractEntry app/templates/src/templates/parts/nav.hbs
+130 silly gunzTarPerm extractEntry app/templates/src/templates/parts/scripts.hbs
+131 silly gunzTarPerm extractEntry app/templates/src/templates/parts/slider.hbs
+132 silly gunzTarPerm extractEntry app/templates/_win-start
+133 silly lockFile ccb8da31-rator-pxa-frontend-0-0-8-package tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+134 silly lockFile ccb8da31-rator-pxa-frontend-0-0-8-package tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package
+135 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+136 silly lockFile 2ac642ad-r-pxa-frontend-0-0-8-package-tgz tar:///Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz
+137 verbose chmod /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz 644
+138 verbose chown /Users/dmytro/.npm/generator-pxa-frontend/0.0.8/package.tgz [ 502, 20 ]
+139 silly lockFile 3a52ce78- .
+140 silly lockFile 3a52ce78- .
+141 silly publish { name: 'generator-pxa-frontend',
+141 silly publish   version: '0.0.8',
+141 silly publish   description: 'Frontend generator for Foundation2013',
+141 silly publish   keywords: [ 'pxa-frontend', 'pxa' ],
+141 silly publish   homepage: 'https://github.com/dmh/generator-pxa-frontend',
+141 silly publish   author: { name: 'Dmytro', url: 'http://github.com/dmh' },
+141 silly publish   main: 'app/index.js',
+141 silly publish   repository:
+141 silly publish    { type: 'git',
+141 silly publish      url: 'git://github.com/dmh/generator-pxa-frontend.git' },
+141 silly publish   dependencies: { 'yeoman-generator': '~0.16.0', 'color-log': '~0.0.2' },
+141 silly publish   devDependencies:
+141 silly publish    { grunt: '~0.4.1',
+141 silly publish      'grunt-contrib-jshint': '~0.8.0',
+141 silly publish      'jshint-stylish': '~0.1.5',
+141 silly publish      'load-grunt-tasks': '~0.2.0' },
+141 silly publish   scripts: { test: 'grunt jshint' },
+141 silly publish   engines: { node: '>=0.10.0', npm: '>=1.2.10' },
+141 silly publish   licenses: [ { type: 'MIT' } ],
+141 silly publish   readme: '# Generator-pxa-frontend \n\n[![Build Status](https://secure.travis-ci.org/dmh/generator-pxa-frontend.png?branch=master)](https://travis-ci.org/dmh/generator-pxa-frontend)  [![NPM version](https://badge.fury.io/js/generator-pxa-frontend.png)](http://badge.fury.io/js/generator-pxa-frontend)  [![Dependency Status](https://david-dm.org/dmh/generator-pxa-frontend.png)](https://david-dm.org/dmh/generator-pxa-frontend)\n\n##Pxa-frontend\n[Pxa-frontend](https://npmjs.org/package/generator-pxa-frontend "Pxa-frontend") \n>Script for add simple changes to css in Foundation2013. It works in local enviroment without Typo3 instalation. Also it works with livereload, so you can see changes without reload web page.\n\nComponents what you need:\n\n1. Git\n2. Install NodeJs http://nodejs.org/\n3. Install Yeoman `sudo npm install -g yo`\n    > This will install Grunt and Bower automatically. If no, you should install it manual:\n    `sudo npm install -g grunt-cli`\n    &\n    `sudo npm install -g bower`\n\n    ####_Links:_\n * [Bower](http://bower.io/ "bower") \n * [Grunt](http://gruntjs.com/ "gruntjs") \n * [Yeoman](http://yeoman.io/ "yeoman") \n\n4. And of course you should install  generator-pxa-frontend: \n    `sudo npm install -g generator-pxa-frontend`\n\n***\n\n####Now you have frontend script in your computer\n**Second step:**\n\n1. Create directory with your new project\n`mkdir newproject && cd $_`\n2. Then start frontend script\n`yo pxa-frontend`\n3. Next, script ask you, ssh link of your project repository in Bitbucket, and, is it shared project, or not.\n4. After this, script will install all dependencies in node_modules folder, bower_components (bootstrap 2.3.2, jquery, pxa_bootstrap, pxa_fluidcontent, pxa_foundation_layout, pxa_foundation), and other stuff.\n5. Next, you can start script:\n**Mac Os & Ubuntu**\n`./start`\nor\n`grunt go`\n**Windows**\n`win-start`\n * After some time it open default browser with foundation page and start watch process with livereload. Now you can open project folder, that automatically cloned from bitbucket, open in it  (/fileadmin/Pixelant/Css), and edit custom.less, variables.less. Changes automatically will reload in browser. Default link is _localhost:9004_ . When you finished editing css styles, you should stop watch process in terminal (**ctrl + C**).\n6. Now you can commit your changes\nEnter ( **./commit** ) in Terminal (_MAC_), or ( **commit** ) in Terminal (_Windows_)\nIt automatically commit and push your changes to bitbucket.\n__Important!__ Testing commit function in test project.\n\n***\n\n####Also you can check your pxa modules using command:\n * ( **./pxa-list** ) Mac\n * ( **pxa-list** ) Windows\n * Or enter ( **bower list** ) everywhere\n\n####To update pxa modules enter:\n * ( **./update** ) Mac\n * ( **update** ) Windows\n\n## License\n\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n',
+141 silly publish   readmeFilename: 'README.md',
+141 silly publish   bugs: { url: 'https://github.com/dmh/generator-pxa-frontend/issues' },
+141 silly publish   _id: 'generator-pxa-frontend@0.0.8',
+141 silly publish   dist: { shasum: 'ed173111069d96cb148ae1880b1c2abaa5587134' },
+141 silly publish   _from: '.' }
+142 verbose url raw generator-pxa-frontend
+143 verbose url resolving [ 'https://registry.npmjs.org/', './generator-pxa-frontend' ]
+144 verbose url resolved https://registry.npmjs.org/generator-pxa-frontend
+145 info trying registry request attempt 1 at 14:09:35
+146 http PUT https://registry.npmjs.org/generator-pxa-frontend
+147 http 409 https://registry.npmjs.org/generator-pxa-frontend
+148 verbose url raw generator-pxa-frontend
+149 verbose url resolving [ 'https://registry.npmjs.org/', './generator-pxa-frontend' ]
+150 verbose url resolved https://registry.npmjs.org/generator-pxa-frontend
+151 info trying registry request attempt 1 at 14:09:37
+152 http GET https://registry.npmjs.org/generator-pxa-frontend
+153 http 200 https://registry.npmjs.org/generator-pxa-frontend
+154 error publish fail Cannot publish over existing version.
+154 error publish fail Update the 'version' field in package.json and try again.
+154 error publish fail
+154 error publish fail If the previous version was published in error, see:
+154 error publish fail     npm help unpublish
+154 error publish fail
+154 error publish fail To automatically increment version numbers, see:
+154 error publish fail     npm help version
+155 error System Darwin 13.0.0
+156 error command "node" "/usr/local/bin/npm" "publish"
+157 error cwd /Users/dmytro/dmh/generators/generator-pxa-frontend
+158 error node -v v0.10.23
+159 error npm -v 1.3.24
+160 error code EPUBLISHCONFLICT
+161 verbose exit [ 1, true ]
