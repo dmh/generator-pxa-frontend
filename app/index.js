@@ -1,11 +1,12 @@
 // log.info log.mark log.warn log.error
 'use strict';
-var util = require('util');
-var path = require('path');
-var log = require('color-log');
-var yeoman = require('yeoman-generator');
+var util = require('util'),
+    path = require('path'),
+    log = require('color-log'),
+    yeoman = require('yeoman-generator'),
+    PxaFrontendGenerator;
 
-var PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options) {
+PxaFrontendGenerator = module.exports = function PxaFrontendGenerator(args, options) {
     yeoman.generators.Base.apply(this, arguments);
     this.on('end', function () {
             if (this.go === 1) {

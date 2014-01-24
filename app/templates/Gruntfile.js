@@ -1,18 +1,18 @@
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var PORT = 9004;
+var LIVERELOAD_PORT = 35729,
+    PORT = 9004;
 // var tempp;
 
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
-    var fs = require('fs');
-    var mainn = {
-        dist: 'foundation_static_site',
-        repo: '<%= (dirr) %>',
-        gitLink: '<%= (gitt) %>',
-        repoExt: '<%= (dirr) %>/typo3conf',
-        ifShared: '<%= (shared) %>'
-    };
+    var fs = require('fs'),
+        mainn = {
+            dist: 'foundation_static_site',
+            repo: '<%= (dirr) %>',
+            gitLink: '<%= (gitt) %>',
+            repoExt: '<%= (dirr) %>/typo3conf',
+            ifShared: '<%= (shared) %>'
+        };
 
     grunt.initConfig({
         main: mainn,
@@ -132,62 +132,62 @@ module.exports = function (grunt) {
         copy: {
             bowerToExt: {
                 files: [
-                    {expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext'}
+                    { expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext' }
                 ]
             },
             bootstrapToExt: {
                 files: [
-                    {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
+                    { expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/' }
                 ]
             },
             bowerToFoundation: {
                 files: [
-                    {expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext'}
+                    { expand: true, cwd: 'bower_components/', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext' }
                 ]
             },
             bootstrapToFoundation: {
                 files: [
-                    {expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/'}
+                    { expand: true, cwd: 'bower_components/bootstrap', src: ['**'], dest: '<%%= fonVerObj() %>/typo3conf/ext/pxa_foundation/Resources/Public/Contrib/bootstrap/' }
                 ]
             },
             font: {
                 files: [
-                    {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/', src: ['font/**'], dest: '<%%= main.dist %>'}
+                    { expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation/Resources/Public/', src: ['font/**'], dest: '<%%= main.dist %>' }
                 ]
             },
             img: {
                 files: [
-                    {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout/Resources/Public/', src: ['img/**'], dest: '<%%= main.dist %>'}
+                    { expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/pxa_foundation_layout/Resources/Public/', src: ['img/**'], dest: '<%%= main.dist %>' }
                 ]
             },
             extFileToTemp: {
                 files: [
-                    {expand: true, cwd: '<%%= main.repo %>/typo3conf/', src: ['ext'], dest: 'temp/pxa_ext/'}
+                    { expand: true, cwd: '<%%= main.repo %>/typo3conf/', src: ['ext'], dest: 'temp/pxa_ext/' }
                 ]
             },
             extFileFromTemp: {
                 files: [
-                    {expand: true, cwd: 'temp/pxa_ext/', src: ['ext'], dest: '<%%= main.repo %>/typo3conf/'}
+                    { expand: true, cwd: 'temp/pxa_ext/', src: ['ext'], dest: '<%%= main.repo %>/typo3conf/' }
                 ]
             },
             styles: {
                 files: [
-                    {expand: true, src: ['styles.css'], dest: '<%%= main.dist %>/assets'}
+                    { expand: true, src: ['styles.css'], dest: '<%%= main.dist %>/assets' }
                 ]
             },
             stylesFix: {
                 files: [
-                    {expand: true, src: ['fix.css'], dest: '<%%= main.dist %>/assets'}
+                    { expand: true, src: ['fix.css'], dest: '<%%= main.dist %>/assets' }
                 ]
             },
             extFolderToTemp: {
                 files: [
-                    {expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/', src: ['pxa_bootstrap/**', 'pxa_fluidcontent/**', 'pxa_foundation/**', 'pxa_foundation_layout/**'], dest: 'temp/pxa_ext/'}
+                    { expand: true, cwd: '<%%= main.repo %>/typo3conf/ext/', src: ['pxa_bootstrap/**', 'pxa_fluidcontent/**', 'pxa_foundation/**', 'pxa_foundation_layout/**'], dest: 'temp/pxa_ext/' }
                 ]
             },
             extFolderFromTemp: {
                 files: [
-                    {expand: true, cwd: 'temp/pxa_ext/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/'}
+                    { expand: true, cwd: 'temp/pxa_ext/', src: ['**'], dest: '<%%= main.repo %>/typo3conf/ext/' }
                 ]
             }
         },
@@ -274,4 +274,3 @@ module.exports = function (grunt) {
     });
 
 };
-

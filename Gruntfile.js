@@ -12,6 +12,20 @@ module.exports = function (grunt) {
                 'app/templates/Gruntfile.js',
                 'app/index.js'
             ]
+        },
+        jscs: {
+            src: [
+                'Gruntfile.js',
+                'app/templates/Gruntfile.js',
+                'app/index.js'
+            ],
+            options: {
+                config: '.jscs.json',
+            }
         }
     });
+    grunt.registerTask('test', [
+        'jshint',
+        'jscs'
+    ]);
 };
