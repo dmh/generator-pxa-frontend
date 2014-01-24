@@ -1,6 +1,6 @@
 {
   "name": "pxa_frontend",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "dependencies": {
     "pxa_bootstrap": "git@bitbucket.org:pixelant/pxa_bootstrap.git",
     "pxa_fluidcontent": "git@bitbucket.org:pixelant/pxa_fluidcontent.git",

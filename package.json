@@ -1,6 +1,6 @@
 {
   "name": "generator-pxa-frontend",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "Frontend generator for Foundation2013",
   "keywords": [
     "pxa-frontend",
@@ -17,14 +17,14 @@
     "url": "git://github.com/dmh/generator-pxa-frontend.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
-    "color-log": "~0.0.2"
+    "yeoman-generator": "0.16.0",
+    "color-log": "0.0.2"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.8.0",
-    "jshint-stylish": "~0.1.5",
-    "load-grunt-tasks": "~0.2.0"
+    "grunt": "0.4.2",
+    "grunt-contrib-jshint": "0.8.0",
+    "jshint-stylish": "0.1.5",
+    "load-grunt-tasks": "0.2.1"
     },
   "scripts": {
     "test": "grunt jshint"
@@ -33,9 +33,5 @@
     "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "license": "MIT"
 }

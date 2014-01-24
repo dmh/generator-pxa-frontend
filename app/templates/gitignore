@@ -3,6 +3,7 @@ temp
 foundation_static_site
 bower_components
 .DS_Store
+npm-debug.log
 
 
 
